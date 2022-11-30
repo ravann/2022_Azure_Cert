@@ -5,6 +5,7 @@ $nsgName = "test_prep_nsg"
 $vmName = "test-prep-vm1"
 $VMSize = "Standard_D2d_v4"
 
+
 # Create credential
 $VMAdmin = "vmuser"
 $pass = Get-Content -Path .\vmpass.txt
@@ -13,6 +14,8 @@ $spass = ConvertTo-SecureString $pass -AsPlainText -Force
 $Credential = New-Object System.Management.Automation.PSCredential ($VMAdmin, $spass);
 
 # Create VM
+$t = Get-AzVM -Name $vmName
+if($t -eq $null) {
 New-AzVM `
     -Name $vmName `
     -ResourceGroupName $rgName `
@@ -23,3 +26,4 @@ New-AzVM `
     -SecurityGroupName $nsgName `
     -Size $VMSize `
     -Verbose
+}
