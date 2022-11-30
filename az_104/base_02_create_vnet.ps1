@@ -2,7 +2,7 @@ $vnetName = "test_prep_vnet"
 $rgName = "test_prep_rg"
 
 
-$t = Get-AzVirtualNetwork -Name $name
+$t = Get-AzVirtualNetwork -Name $vnetName
 
 if($t -eq $null) {
     # Create the virtual network
